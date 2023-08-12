@@ -21,4 +21,14 @@ class binarySearchTree {
     );
     return removedDublicates;
   }
+  buildTree(array) {
+    if (array.length === 0) {
+      return null;
+    }
+    const mid = parseInt(array.length / 2);
+    const root = new Node(array[mid]);
+    root.left = this.buildTree(array.slice(0, mid));
+    root.right = this.buildTree(array.slice(mid + 1));
+    return root;
+  }
 }
