@@ -55,4 +55,24 @@ class binarySearchTree {
       }
     }
   }
+  findValue(root, value) {
+    if (!root) {
+      return false;
+    } else {
+      if (root.data === value) {
+        return true;
+      } else if (value < root.data) {
+        return this.findValue(root.left, value);
+      } else {
+        return this.findValue(root.right, value);
+      }
+    }
+  }
+  max(root) {
+    if (!root.right) {
+      return root.value;
+    } else {
+      return this.min(root.right);
+    }
+  }
 }
