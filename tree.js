@@ -75,4 +75,30 @@ class binarySearchTree {
       return this.min(root.right);
     }
   }
+  delete(value) {
+    this.root = this.deleteNode(this.root, value);
+  }
+
+  deleteNode(root, value) {
+    if (root.data === null) {
+      return root;
+    } else if (value < root.data) {
+      root.left = this.deleteNode(root.left, value);
+    } else if (value > root.data) {
+      root.right = this.deleteNode(root.right, value);
+    } else {
+      if (!root.left && !root.right) {
+        return null;
+      }
+      if (!root.left) {
+        return root.right;
+      } else if (!root.right) {
+        return root.left;
+      } else {
+        root.value = this.max(root.right);
+        root.right = this.deleteNode(root.right, root.value);
+      }
+    }
+    return root;
+  }
 }
