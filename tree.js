@@ -101,4 +101,13 @@ class binarySearchTree {
     }
     return root;
   }
+
+  inOrderTraversal(root, result = []) {
+    if (root) {
+      this.inOrderTraversal(root.left, result);
+      result.push(root.data);
+      this.inOrderTraversal(root.right, result);
+    }
+    return result;
+  }
 }
