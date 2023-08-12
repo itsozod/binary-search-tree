@@ -111,3 +111,12 @@ class binarySearchTree {
     return result;
   }
 }
+
+const tree = new binarySearchTree([1, 2, 3, 4]);
+console.log("Is it empty?", tree.isEmpty());
+tree.insert(6);
+tree.insert(7);
+tree.delete(1);
+tree.delete(7);
+tree.delete(6);
+console.log(tree.inOrderTraversal(tree.root));
