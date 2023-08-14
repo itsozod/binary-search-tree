@@ -145,6 +145,17 @@ class binarySearchTree {
     }
     return result;
   }
+
+  // post order traversal first visits left then right then the root node
+
+  postOrderTraversal(root, result = []) {
+    if (root) {
+      this.postOrderTraversal(root.left, result);
+      this.postOrderTraversal(root.right, result);
+      result.push(root.data);
+    }
+    return result;
+  }
 }
 
 const tree = new binarySearchTree([1, 2, 3, 4]);
