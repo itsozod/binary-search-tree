@@ -60,6 +60,7 @@ class binarySearchTree {
     }
   }
 
+  // function to find a value if it exists return true otherwise false
   findValue(root, value) {
     if (!root) {
       return false;
@@ -73,6 +74,7 @@ class binarySearchTree {
       }
     }
   }
+  // funtion to find a minimum value
   min(root) {
     if (!root.left) {
       return root.data;
@@ -80,7 +82,7 @@ class binarySearchTree {
       return this.min(root.left);
     }
   }
-
+  // funtion to find a maximum value
   max(root) {
     if (!root.right) {
       return root.data;
@@ -180,6 +182,7 @@ tree.insert(10);
 tree.insert(5);
 tree.insert(15);
 tree.insert(7);
+tree.delete(15)
 
 console.log(tree.levelOrderTraversal(tree.root)); //[ 3, 2, 10, 5, 15, 7 ]
 console.log(tree.preorderTraversal(tree.root)); // [ 3, 2, 10, 5, 7, 15 ]
@@ -187,3 +190,4 @@ console.log(tree.inOrderTraversal(tree.root)); // [ 2, 3, 5, 7, 10, 15 ]
 console.log(tree.postOrderTraversal(tree.root)); // [ 2, 7, 5, 15, 10, 3 ]
 console.log(tree.min(tree.root)); // 2
 console.log(tree.max(tree.root)); // 15
+console.log(tree.findValue(tree.root, 15)); // false
