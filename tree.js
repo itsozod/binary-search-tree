@@ -8,12 +8,14 @@ class Node {
 
 class binarySearchTree {
   constructor(array) {
-    this.root = this.buildTree(array);
+    const sortedArray = this.sortAndRemoveDubs(array);
+    this.root = this.buildTree(sortedArray);
   }
 
   isEmpty() {
     return this.root === null;
   }
+
   sortAndRemoveDubs(array) {
     const sorted = array.sort((a, b) => a - b);
     const removedDublicates = sorted.filter(
@@ -21,6 +23,7 @@ class binarySearchTree {
     );
     return removedDublicates;
   }
+
   buildTree(array) {
     if (array.length === 0) {
       return null;
@@ -31,6 +34,7 @@ class binarySearchTree {
     root.right = this.buildTree(array.slice(mid + 1));
     return root;
   }
+
   insert(value) {
     const newNode = new Node(value);
     if (this.isEmpty()) {
@@ -55,6 +59,7 @@ class binarySearchTree {
       }
     }
   }
+
   findValue(root, value) {
     if (!root) {
       return false;
@@ -68,13 +73,22 @@ class binarySearchTree {
       }
     }
   }
-  max(root) {
-    if (!root.right) {
-      return root.value;
+  min(root) {
+    if (!root.left) {
+      return root.data;
     } else {
-      return this.min(root.right);
+      return this.min(root.left);
     }
   }
+
+  max(root) {
+    if (!root.right) {
+      return root.data;
+    } else {
+      return this.max(root.right);
+    }
+  }
+
   delete(value) {
     this.root = this.deleteNode(this.root, value);
   }
@@ -95,8 +109,8 @@ class binarySearchTree {
       } else if (!root.right) {
         return root.left;
       } else {
-        root.value = this.max(root.right);
-        root.right = this.deleteNode(root.right, root.value);
+        root.data = this.max(root.right);
+        root.right = this.deleteNode(root.right, root.data);
       }
     }
     return root;
