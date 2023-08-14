@@ -136,6 +136,7 @@ class binarySearchTree {
     return result;
   }
 
+  // inorder traversal first visits left then root node then right
   inOrderTraversal(root, result = []) {
     if (root) {
       this.inOrderTraversal(root.left, result);
