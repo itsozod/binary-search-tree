@@ -158,11 +158,18 @@ class binarySearchTree {
   }
 }
 
-const tree = new binarySearchTree([1, 2, 3, 4]);
+const array = [2, 3];
+
+const tree = new binarySearchTree(array);
 console.log("Is it empty?", tree.isEmpty());
-tree.insert(6);
+tree.insert(10);
+tree.insert(5);
+tree.insert(15);
 tree.insert(7);
-tree.delete(1);
-tree.delete(7);
-tree.delete(6);
-console.log(tree.inOrderTraversal(tree.root));
+
+console.log(tree.levelOrderTraversal(tree.root)); //[ 3, 2, 10, 5, 15, 7 ]
+console.log(tree.preorderTraversal(tree.root)); // [ 3, 2, 10, 5, 7, 15 ]
+console.log(tree.inOrderTraversal(tree.root)); // [ 2, 3, 5, 7, 10, 15 ]
+console.log(tree.postOrderTraversal(tree.root)); // [ 2, 7, 5, 15, 10, 3 ]
+console.log(tree.min(tree.root)); // 2
+console.log(tree.max(tree.root)); // 15
