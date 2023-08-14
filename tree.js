@@ -104,7 +104,6 @@ class binarySearchTree {
 
   // level order traversal (breadth first search) first visits root then left then right
   // BFS
-
   levelOrderTraversal() {
     if (!this.root) {
       return [];
@@ -122,6 +121,17 @@ class binarySearchTree {
       if (node.right) {
         queue.push(node.right);
       }
+    }
+    return result;
+  }
+
+  // DFS
+  // preorder traversal first reads the data of the root node then left then right
+  preorderTraversal(root, result = []) {
+    if (root) {
+      result.push(root.data);
+      this.preorderTraversal(root.left, result);
+      this.preorderTraversal(root.right, result);
     }
     return result;
   }
