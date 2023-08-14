@@ -102,6 +102,30 @@ class binarySearchTree {
     return root;
   }
 
+  // level order traversal (breadth first search) first visits root then left then right
+  // BFS
+
+  levelOrderTraversal() {
+    if (!this.root) {
+      return [];
+    }
+    let result = [];
+    let queue = [this.root];
+
+    while (queue.length > 0) {
+      const node = queue.shift();
+      result.push(node.data);
+
+      if (node.left) {
+        queue.push(node.left);
+      }
+      if (node.right) {
+        queue.push(node.right);
+      }
+    }
+    return result;
+  }
+
   inOrderTraversal(root, result = []) {
     if (root) {
       this.inOrderTraversal(root.left, result);
