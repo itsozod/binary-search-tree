@@ -60,19 +60,30 @@ class binarySearchTree {
     }
   }
 
-  // function to find a value if it exists return true otherwise false
-  findValue(root, value) {
+  // if value is found in the tree returns true otherwise false
+  findValueTrueOrFalse(root, value) {
     if (!root) {
       return false;
     } else {
       if (root.data === value) {
         return true;
       } else if (value < root.data) {
-        return this.findValue(root.left, value);
+        return this.findValueTrueOrFalse(root.left, value);
       } else {
-        return this.findValue(root.right, value);
+        return this.findValueTrueOrFalse(root.right, value);
       }
     }
+  }
+
+  // accepts a value and returns a node with the given value
+  findValue(value, root = this.root) {
+    if (root === null || root.data === value) {
+      return root;
+    }
+    if (value < root.data) {
+      return this.findValue(value, root.left);
+    }
+    return this.findValue(value, root.right);
   }
   // funtion to find a minimum value
   min(root) {
@@ -182,7 +193,7 @@ tree.insert(10);
 tree.insert(5);
 tree.insert(15);
 tree.insert(7);
-tree.delete(15)
+tree.delete(15);
 
 console.log(tree.levelOrderTraversal(tree.root)); //[ 3, 2, 10, 5, 15, 7 ]
 console.log(tree.preorderTraversal(tree.root)); // [ 3, 2, 10, 5, 7, 15 ]
