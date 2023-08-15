@@ -87,6 +87,9 @@ class binarySearchTree {
   }
   // funtion to find a minimum value
   min(root) {
+    if (!root) {
+      return null;
+    }
     if (!root.left) {
       return root.data;
     } else {
@@ -95,6 +98,9 @@ class binarySearchTree {
   }
   // funtion to find a maximum value
   max(root) {
+    if (!root) {
+      return null;
+    }
     if (!root.right) {
       return root.data;
     } else {
