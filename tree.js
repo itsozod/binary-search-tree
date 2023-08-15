@@ -61,7 +61,7 @@ class binarySearchTree {
   }
 
   // if value is found in the tree returns true otherwise false
-  findValueTrueOrFalse(value, root) {
+  findValueTrueOrFalse(value, root = this.root) {
     if (!root) {
       return false;
     } else {
@@ -223,6 +223,19 @@ class binarySearchTree {
       return this.findDepth(node, root.right, (depth += 1));
     }
   }
+
+  prettyPrint(node, prefix = "", isLeft =  true) {
+    if (node === null) {
+      return;
+    }
+    if (node.right !== null) {
+      this.prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
+    }
+    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
+    if (node.left !== null) {
+      this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
+    }
+  };
 }
 
 const array = [2, 3];
@@ -233,7 +246,6 @@ tree.insert(10);
 tree.insert(5);
 tree.insert(15);
 tree.insert(7);
-tree.delete(15);
 tree.delete(7);
 
 console.log(tree.levelOrderTraversal(tree.root)); //[ 3, 2, 10, 5, 15, 7 ]
@@ -244,7 +256,8 @@ console.log(tree.min(tree.root)); // 2
 console.log(tree.max(tree.root)); // 15
 console.log(tree.findValue(3)); //true, returns a node
 console.log("Height:", tree.findHeight(tree.findValue(3)));
-console.log("Depth:", tree.findDepth(tree.findValue(3)));
+console.log("Depth:", tree.findDepth(tree.findValue(2)));
 console.log("Max Depth:", tree.findMaxDepth(tree.root));
-console.log(tree.findValueTrueOrFalse(15)); //false
+console.log(tree.findValueTrueOrFalse(15)); //true
 console.log(tree.findValueTrueOrFalse(7)); //false
+tree.prettyPrint(tree.root);
