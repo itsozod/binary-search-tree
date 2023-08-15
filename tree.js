@@ -236,6 +236,20 @@ class binarySearchTree {
       this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
     }
   };
+
+  isBalanced(root = this.root) {
+    if (!root) {
+      return true;
+    }
+
+    const leftHeight = this.findHeight(root.left);
+    const rightHeight = this.findHeight(root.right);
+
+    if (Math.abs(leftHeight - rightHeight) > 1) {
+      return false;
+    }
+    return this.isBalanced(root.left) && this.isBalanced(root.right);
+  }
 }
 
 const array = [2, 3];
@@ -261,3 +275,4 @@ console.log("Max Depth:", tree.findMaxDepth(tree.root));
 console.log(tree.findValueTrueOrFalse(15)); //true
 console.log(tree.findValueTrueOrFalse(7)); //false
 tree.prettyPrint(tree.root);
+console.log(tree.isBalanced());
