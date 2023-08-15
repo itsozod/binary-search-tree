@@ -13,5 +13,6 @@
 <li>Write <code>inorderTraversal</code>, <code>preOrderTraversal</code> and <code>postOrderTraversal</code> functions which each of these functions should traverse the tree in their respective depth-first order</li>
 <li>Write a <code>height</code> function which accepts a node and returns its height. Height is defined as the number of edges in longest path from a given node to a leaf node</li>
 <li>Write a <code>depth</code> function which accepts a node and returns its depth. Depth is defined as the number of edges in path from a given node to the tree’s root node</li>
+<li>Write a <code>prettyPrint</code> function to visualize the tree in console</li>
 </ol>
 
