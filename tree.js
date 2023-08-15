@@ -209,6 +209,20 @@ class binarySearchTree {
       Math.max(this.findHeight(root.left), this.findHeight(root.right)) + 1
     );
   }
+  // depth is defined as number of edges in path from a given node to tree's root node
+  findDepth(node, root = this.root, depth = 0) {
+    if (root === null || node === null) {
+      return null;
+    }
+    if (node === root) {
+      return `${depth}`;
+    }
+    if (node.data < root.data) {
+      return this.findDepth(node, root.left, (depth += 1));
+    } else {
+      return this.findDepth(node, root.right, (depth += 1));
+    }
+  }
 }
 
 const array = [2, 3];
