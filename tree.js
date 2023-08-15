@@ -190,15 +190,25 @@ class binarySearchTree {
     return result;
   }
 
-    // height of the tree is defined as number of edges in a longest path from a given node to the leaf node
-    findHeight(root) {
-      if (root === null) {
-        return 0;
-      }
-      return (
-        Math.max(this.findHeight(root.left), this.findHeight(root.right)) + 1
-      );
+  // height of the tree is defined as number of edges in a longest path from a given node to the leaf node
+  findHeight(root) {
+    if (root === null) {
+      return 0;
     }
+    return (
+      Math.max(this.findHeight(root.left), this.findHeight(root.right)) + 1
+    );
+  }
+
+  // max depth of the tree
+  findMaxDepth(root) {
+    if (root === null) {
+      return 0;
+    }
+    return (
+      Math.max(this.findHeight(root.left), this.findHeight(root.right)) + 1
+    );
+  }
 }
 
 const array = [2, 3];
