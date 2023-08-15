@@ -224,19 +224,6 @@ class binarySearchTree {
     }
   }
 
-  prettyPrint(node, prefix = "", isLeft =  true) {
-    if (node === null) {
-      return;
-    }
-    if (node.right !== null) {
-      this.prettyPrint(node.right, `${prefix}${isLeft ? "│   " : "    "}`, false);
-    }
-    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
-    if (node.left !== null) {
-      this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
-    }
-  };
-
   isBalanced(root = this.root) {
     if (!root) {
       return true;
@@ -250,6 +237,29 @@ class binarySearchTree {
     }
     return this.isBalanced(root.left) && this.isBalanced(root.right);
   }
+
+  rebalance() {
+    let arr = this.levelOrderTraversal();
+    let newArr = arr.sort((a, b) => a - b);
+    return this.root = this.buildTree(newArr);
+  }
+
+  prettyPrint(node = this.root, prefix = "", isLeft = true) {
+    if (node === null) {
+      return;
+    }
+    if (node.right !== null) {
+      this.prettyPrint(
+        node.right,
+        `${prefix}${isLeft ? "│   " : "    "}`,
+        false
+      );
+    }
+    console.log(`${prefix}${isLeft ? "└── " : "┌── "}${node.data}`);
+    if (node.left !== null) {
+      this.prettyPrint(node.left, `${prefix}${isLeft ? "    " : "│   "}`, true);
+    }
+  }
 }
 
 const array = [2, 3];
@@ -260,7 +270,6 @@ tree.insert(10);
 tree.insert(5);
 tree.insert(15);
 tree.insert(7);
-tree.delete(7);
 
 console.log(tree.levelOrderTraversal(tree.root)); //[ 3, 2, 10, 5, 15, 7 ]
 console.log(tree.preorderTraversal(tree.root)); // [ 3, 2, 10, 5, 7, 15 ]
@@ -274,5 +283,8 @@ console.log("Depth:", tree.findDepth(tree.findValue(2)));
 console.log("Max Depth:", tree.findMaxDepth(tree.root));
 console.log(tree.findValueTrueOrFalse(15)); //true
 console.log(tree.findValueTrueOrFalse(7)); //false
+tree.prettyPrint(tree.root);
+console.log(tree.isBalanced());
+tree.rebalance();
 tree.prettyPrint(tree.root);
 console.log(tree.isBalanced());
